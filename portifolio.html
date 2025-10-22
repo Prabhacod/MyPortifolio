@@ -216,7 +216,7 @@
         </div>
 
         <div style="flex:1;min-width:260px">
-          <h3>Quick facts</h3>
+          <h3>Details</h3>
           <ul>
             <li>Currently: B.E. CSE student</li>
             <li>Location: Coimbatore, India</li>
@@ -397,6 +397,17 @@
     }
     document.getElementById('closeModal').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')});
     modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}})
+    
+    function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.style.opacity = 1;
+  toast.style.pointerEvents = 'auto';
+  setTimeout(() => {
+    toast.style.opacity = 0;
+    toast.style.pointerEvents = 'none';
+  }, 3000); // disappears after 3 seconds
+}
 
     // contact form (client-side only)
     const form = document.getElementById('contactForm');
@@ -410,8 +421,10 @@
       status.textContent='Sending...';
       // placeholder: replace with real endpoint (email sending service or backend)
       await new Promise(r=>setTimeout(r,800));
-      status.textContent='Message sent! (demo)';
       form.reset();
+       status.textContent='';
+       showToast('Message sent successfully!');
+
     });
 
     // back to top
@@ -426,8 +439,24 @@
       p.addEventListener('keydown',e=>{if(e.key==='Enter'){const btn = p.querySelector('[data-open]'); if(btn) btn.click();}})
     });
 
-    // small analytics placeholder
+    // small analytics placeholder 
     (function(){console.log('Portfolio loaded')})();
   </script>
+  <!-- Toast message -->
+<div id="toast" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4caf50;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 1000;
+">Message sent!</div>
+
 </body>
 </html>
