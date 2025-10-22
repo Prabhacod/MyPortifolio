@@ -12,6 +12,11 @@
     html,body{height:100%}
     body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;line-height:1.4;background:#f7f7fb;color:#111}
     a{color:inherit;text-decoration:none}
+   
+     .navlinks a:hover { color: #ff4bcfed; text-decoration: none; }
+  .btn:hover { background: #ff4bcf59; transform: scale(1.05); transition: 0.3s; }
+  .ghost:hover { border-color: #ff4bcfed; color: #ff4bcfed; transition: 0.3s; }
+  .proj:hover {transform: translateY(-5px); box-shadow: 0 8px 20px rgba(189, 0, 154, 0.897); transition: 0.3s; }
 
     /* ====== Layout ====== */
     header{position:sticky;top:0;z-index:40;background:var(--bg);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,.06)}
@@ -84,8 +89,29 @@
 }
 
 [data-theme='dark'] .exp-card {
-  background: #111;
+  background: #111111;
   color: #e6e6ee;
+}
+  .about-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.about-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.about-content {
+  flex: 1;
+  min-width: 300px;
 }
 
 
@@ -110,7 +136,7 @@
 
     /* Dark theme variables */
     :root{--bg:#dd54cd36;--card:#fff}
-    [data-theme='dark']{--bg:#0b0b10;--card:#0f0f13;color:#e6e6ee}
+    [data-theme='dark']{--bg:#2c92e682;--card:#e791e13f;color:#040420d8}
     body{background:var(--bg)}
     header, .hero-card, .proj, .modal .card{background:var(--card)}
 
@@ -122,7 +148,7 @@
   <header>
     <div class="container">
       <nav>
-        <div class="logo">Prabha<span class="muted"></span></div>
+        <div class="logo">PRABHA<span class="muted"></span></div>
         <div class="navlinks" id="navlinks">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
@@ -141,6 +167,7 @@
   <main class="container">
     <section class="hero" id="home">
       <div>
+        
         <h1>Hi, I'm <strong>Prabha</strong></h1>
         <p>Student &amp; beginner Full-Stack developer. I build projects, learn new tech and solve problems. Looking for internships & real-world experience.</p>
         <div class="ctas">
@@ -151,7 +178,7 @@
           <span class="chip">HTML</span>
           <span class="chip">CSS</span>
           <span class="chip">JavaScript</span>
-          <span class="chip">Flask / Node</span>
+          <span class="chip">Java</span>
         </div>
       </div>
       <aside>
@@ -165,30 +192,42 @@
         </div>
       </aside>
     </section>
+<section id="about">
+  <h2 class="section-title">About</h2>
 
-    <section id="about">
-      <h2 class="section-title">About</h2>
-      <p class="muted">Short 2-line intro about you. Replace this with your bio — education, interests, and career goal.</p>
+  <div class="about-container">
+    <img src="Prabha's photo.jpeg" alt="Prabha's Photo" class="about-photo">
+
+    <div class="about-content">
+      <p class="muted">
+        I'm Prabha, a Computer Science Engineering student at Sri Shakthi Institute of Engineering and Technology.
+        I'm passionate about web development and aim to become a skilled full-stack developer.
+      </p>
+
       <div style="display:flex;gap:24px;margin-top:12px;flex-wrap:wrap">
         <div style="flex:1;min-width:260px">
           <h3>Skills</h3>
           <div class="skills">
             <div class="skill"><strong>HTML/CSS</strong><div class="progress" aria-hidden><i style="width:92%"></i></div></div>
-            <div class="skill"><strong>JavaScript</strong><div class="progress" aria-hidden><i style="width:80%"></i></div></div>
-            <div class="skill"><strong>Python</strong><div class="progress" aria-hidden><i style="width:72%"></i></div></div>
-            <div class="skill"><strong>Databases</strong><div class="progress" aria-hidden><i style="width:68%"></i></div></div>
+            <div class="skill"><strong>JavaScript</strong><div class="progress" aria-hidden><i style="width:40%"></i></div></div>
+            <div class="skill"><strong>Java</strong><div class="progress" aria-hidden><i style="width:72%"></i></div></div>
+            <div class="skill"><strong>MERN</strong><div class="progress" aria-hidden><i style="width:80%"></i></div></div>
           </div>
         </div>
+
         <div style="flex:1;min-width:260px">
           <h3>Quick facts</h3>
           <ul>
             <li>Currently: B.E. CSE student</li>
-            <li>Location: Theni, India</li>
-            <li>Open to internships &collab</li>
+            <li>Location: Coimbatore, India</li>
+            <li>Open to internships & collab</li>
           </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
     <section id="projects">
       <h2 class="section-title">Projects</h2>
@@ -201,32 +240,36 @@
       <div class="projects-grid" id="projectsGrid">
         <!-- Example project card -->
         <article class="proj" data-category="web" tabindex="0">
-          <img loading="lazy" src="https://picsum.photos/seed/p1/600/400" alt="Project screenshot">
-          <h4>Expense Tracker</h4>
-          <p class="muted">HTML, CSS, JS, Flask, MySQL</p>
+          <img loading="lazy" src="EasyGrocer.jpg" alt="Project screenshot">
+          <h4>EasyGrocer</h4>
+          <p class="muted">MERN</p>
           <div style="display:flex;gap:8px;margin-top:8px">
             <button class="chip" data-open="p1">Details</button>
-            <a class="chip" href="#" onclick="alert('Replace link with live demo URL')">Live</a>
+<a class="chip" 
+   href="https://github.com/Prabhacod/EasyGrocer/commit/e62d9907b6fb81c0dc3e894eb49da83de60010f5" 
+   target="_blank">
+   Live
+</a>
           </div>
         </article>
 
-        <article class="proj" data-category="web" tabindex="0">
-          <img loading="lazy" src="https://picsum.photos/seed/p2/600/400" alt="Project screenshot">
-          <h4>Tech Job Portal</h4>
-          <p class="muted">Python, Scraper, Flask, MySQL</p>
+        <article class="proj" data-category="others" tabindex="0">
+          <img loading="lazy" src="JobPortal.jpg" alt="Project screenshot">
+          <h4>Job Portal</h4>
+          <p class="muted">Java</p>
           <div style="display:flex;gap:8px;margin-top:8px">
             <button class="chip" data-open="p2">Details</button>
             <a class="chip" href="#">Live</a>
           </div>
         </article>
 
-        <article class="proj" data-category="ml" tabindex="0">
-          <img loading="lazy" src="https://picsum.photos/seed/p3/600/400" alt="Project screenshot">
-          <h4>Simple ML Model</h4>
-          <p class="muted">Python, scikit-learn</p>
+        <article class="proj" data-category="web" tabindex="0">
+          <img loading="lazy" src="ExpenseTracker.jpg" alt="Project screenshot">
+          <h4>Expense Tracker</h4>
+          <p class="muted">MERN</p>
           <div style="display:flex;gap:8px;margin-top:8px">
             <button class="chip" data-open="p3">Details</button>
-            <a class="chip" href="#">Code</a>
+            <a class="chip" href="#">Live</a>
           </div>
         </article>
       </div>
@@ -343,9 +386,9 @@
     function openProject(id){
       // simple static content, replace with dynamic content or fetch
       const data = {
-        p1:{title:'Expense Tracker',desc:'Full-featured expense tracker with charts and user auth.'},
-        p2:{title:'Tech Job Portal',desc:'Scraper + Flask app that collects job postings and sends alerts.'},
-        p3:{title:'ML Model',desc:'Simple classification pipeline with sklearn.'}
+        p1:{title:'EasyGrocer'},
+        p2:{title:'Job Portal'},
+        p3:{title:'Expense Tracker'}
       };
       const d = data[id] || {title:'Project',desc:'Description here.'};
       modalContent.innerHTML = `<h3>${d.title}</h3><p class="muted">${d.desc}</p><p><a href='#'>View code</a> · <a href='#'>Live demo</a></p>`;
