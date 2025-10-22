@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Prabha - Full Stack Portfolio. Projects, skills, resume and contact.">
+  <title>Prabha | Portfolio</title>
+  <link rel="icon" href="favicon.ico">
+  <style>
+    /* ====== Simple CSS reset ====== */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;line-height:1.4;background:#f7f7fb;color:#111}
+    a{color:inherit;text-decoration:none}
+
+    /* ====== Layout ====== */
+    header{position:sticky;top:0;z-index:40;background:var(--bg);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,.06)}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+
+    .logo{font-weight:700;letter-spacing:.4px}
+    .navlinks{display:flex;gap:18px;align-items:center}
+    .btn{display:inline-block;padding:8px 14px;border-radius:10px;background:#111;color:#ffffff;font-weight:600}
+    .ghost{background:transparent;border:1px solid rgba(204, 67, 181, 0.365);color:inherit}
+
+    /* Mobile menu */
+    .menu-toggle{display:none}
+    @media (max-width:880px){.navlinks{display:none}.menu-toggle{display:block}}
+
+    /* ===== Hero ===== */
+    .hero{padding:56px 0;display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+    .hero h1{font-size:2.1rem;margin:0 0 12px}
+    .hero p{margin:0 0 18px;color:rgba(0,0,0,.7)}
+    .hero .ctas{display:flex;gap:12px}
+    .hero-card{padding:18px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.9));box-shadow:0 6px 18px rgba(20,20,40,.06)}
+
+    /* ===== Sections ===== */
+    section{padding:40px 0;border-bottom:1px solid rgba(0,0,0,.03)}
+    h2.section-title{font-size:1.15rem;margin:0 0 18px}
+
+    /* Skills */
+    .skills{display:flex;gap:16px;flex-wrap:wrap}
+    .skill{flex:1 1 220px}
+    .progress{height:10px;background:#eee;border-radius:999px;overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,#111,#4b4bff);border-radius:999px}
+
+    /* Projects grid */
+    .filters{display:flex;gap:8px;margin-bottom:12px}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+    .proj{background:#c33cbe42;border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(24,24,60,.04)}
+    .proj img{width:100%;height:150px;object-fit:cover;border-radius:8px}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:20px}
+    .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:rgba(0,0,0,.06)}
+    .tl-item{position:relative;padding:12px 0 12px 22px}
+    .tl-item time{display:block;color:rgba(0,0,0,.45);font-size:.87rem}
+
+    /* ===== Experience & Education Grid ===== */
+#experience {
+  background: var(--card);
+  padding: 50px 20px;
+  border-radius: 14px;
+  margin-top: 30px;
+}
+
+#experience .section-title {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.exp-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(190, 128, 178, 0.637);
+}
+
+[data-theme='dark'] .exp-card {
+  background: #111;
+  color: #e6e6ee;
+}
+
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5);visibility:hidden;opacity:0;transition:opacity .18s}
+    .modal.open{visibility:visible;opacity:1}
+    .modal .card{width:min(760px,92%);background:#fff;padding:18px;border-radius:12px}
+
+    /* Contact */
+    form .row{display:flex;gap:12px}
+    form input,form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,.08)}
+
+    /* Footer */
+    footer{padding:28px 0;text-align:center;background:var(--bg);color:rgba(217, 16, 16, 0.6)}
+
+    /* small helpers */
+    .muted{color:rgba(0,0,0,.55)}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.06)}
+    .top-btn{position:fixed;right:18px;bottom:18px;padding:10px;border-radius:999px;display:none}
+    .top-btn.show{display:block}
+
+    /* Dark theme variables */
+    :root{--bg:#dd54cd36;--card:#fff}
+    [data-theme='dark']{--bg:#0b0b10;--card:#0f0f13;color:#e6e6ee}
+    body{background:var(--bg)}
+    header, .hero-card, .proj, .modal .card{background:var(--card)}
+
+    /* focus-visible for accessibility */
+    :focus-visible{outline:3px solid rgba(75, 75, 255, 0.361);outline-offset:3px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Prabha<span class="muted"></span></div>
+        <div class="navlinks" id="navlinks">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Education</a>
+          <a href="#contact">Contact</a>
+          <a class="btn" href="Prabha's resume.pdf" download>Download CV</a>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button aria-label="Toggle theme" id="themeToggle" class="ghost">Theme</button>
+          <button class="menu-toggle" id="menuBtn" aria-label="Open menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="home">
+      <div>
+        <h1>Hi, I'm <strong>Prabha</strong></h1>
+        <p>Student &amp; beginner Full-Stack developer. I build projects, learn new tech and solve problems. Looking for internships & real-world experience.</p>
+        <div class="ctas">
+          <a class="btn" href="#projects">See Projects</a>
+          <a class="ghost" href="#contact">Hire Me</a>
+        </div>
+        <div style="margin-top:18px" class="chips">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Flask / Node</span>
+        </div>
+      </div>
+      <aside>
+        <div class="hero-card">
+          <h3>Contact</h3>
+          <p class="muted">Email: your.email@example.com</p>
+          <p class="muted">Phone: +91-xxxxxxxxxx</p>
+          <div style="margin-top:12px">
+            <a href="#contact" class="btn">Message</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <p class="muted">Short 2-line intro about you. Replace this with your bio — education, interests, and career goal.</p>
+      <div style="display:flex;gap:24px;margin-top:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <h3>Skills</h3>
+          <div class="skills">
+            <div class="skill"><strong>HTML/CSS</strong><div class="progress" aria-hidden><i style="width:92%"></i></div></div>
+            <div class="skill"><strong>JavaScript</strong><div class="progress" aria-hidden><i style="width:80%"></i></div></div>
+            <div class="skill"><strong>Python</strong><div class="progress" aria-hidden><i style="width:72%"></i></div></div>
+            <div class="skill"><strong>Databases</strong><div class="progress" aria-hidden><i style="width:68%"></i></div></div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:260px">
+          <h3>Quick facts</h3>
+          <ul>
+            <li>Currently: B.E. CSE student</li>
+            <li>Location: Theni, India</li>
+            <li>Open to internships &collab</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="filters" role="tablist" aria-label="Project filters">
+        <button class="chip" data-filter="all">All</button>
+        <button class="chip" data-filter="web">Web</button>
+        <button class="chip" data-filter="ml">ML</button>
+        <button class="chip" data-filter="others">Others</button>
+      </div>
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Example project card -->
+        <article class="proj" data-category="web" tabindex="0">
+          <img loading="lazy" src="https://picsum.photos/seed/p1/600/400" alt="Project screenshot">
+          <h4>Expense Tracker</h4>
+          <p class="muted">HTML, CSS, JS, Flask, MySQL</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="chip" data-open="p1">Details</button>
+            <a class="chip" href="#" onclick="alert('Replace link with live demo URL')">Live</a>
+          </div>
+        </article>
+
+        <article class="proj" data-category="web" tabindex="0">
+          <img loading="lazy" src="https://picsum.photos/seed/p2/600/400" alt="Project screenshot">
+          <h4>Tech Job Portal</h4>
+          <p class="muted">Python, Scraper, Flask, MySQL</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="chip" data-open="p2">Details</button>
+            <a class="chip" href="#">Live</a>
+          </div>
+        </article>
+
+        <article class="proj" data-category="ml" tabindex="0">
+          <img loading="lazy" src="https://picsum.photos/seed/p3/600/400" alt="Project screenshot">
+          <h4>Simple ML Model</h4>
+          <p class="muted">Python, scikit-learn</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="chip" data-open="p3">Details</button>
+            <a class="chip" href="#">Code</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+  <h2 class="section-title">Education</h2>
+  <div class="experience-grid">
+    <div class="exp-card">
+      <h3>B.E. Computer Science</h3>
+       <p><strong>2023-2027 Batch</strong></p>
+      <p><strong>2025 - Present</strong></p>
+      <p class="muted">Sri Shakthi Institute of Engineering and Technology</p>
+    </div>
+  </div>
+</section>
+
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <form id="contactForm" onsubmit="return false" aria-label="Contact form">
+        <div class="row">
+          <input id="name" type="text" placeholder="Your name" required>
+          <input id="email" type="email" placeholder="Your email" required>
+        </div>
+        <div style="margin-top:8px">
+          <input id="subject" type="text" placeholder="Subject" required>
+        </div>
+        <div style="margin-top:8px">
+          <textarea id="message" rows="6" placeholder="Message" required></textarea>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+          <button class="btn" id="sendBtn">Send</button>
+          <div id="formStatus" class="muted"></div>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Prabha <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </div>
+  </footer>
+
+  <!-- Modal for project details -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="card" role="document">
+      <button id="closeModal" aria-label="Close">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <button id="topBtn" class="top-btn" aria-label="Back to top">↑</button>
+
+  <script>
+    // small helpers and initial state
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const menuBtn = document.getElementById('menuBtn');
+    const navlinks = document.getElementById('navlinks');
+    const yearSpan = document.getElementById('year');
+    yearSpan.textContent = new Date().getFullYear();
+
+    // theme persisted
+    const saved = localStorage.getItem('theme');
+    if(saved) document.documentElement.setAttribute('data-theme', saved);
+    function toggleTheme(){
+      const cur = document.documentElement.getAttribute('data-theme')||'light';
+      const nxt = cur==='light'?'dark':'light';
+      document.documentElement.setAttribute('data-theme', nxt);
+      localStorage.setItem('theme', nxt);
+    }
+    themeToggle.addEventListener('click',toggleTheme);
+
+    // mobile menu
+    menuBtn.addEventListener('click',()=>{
+      const shown = navlinks.style.display==='flex';
+      navlinks.style.display = shown? '': 'flex';
+      navlinks.style.flexDirection = 'column';
+    });
+
+    // smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      })
+    });
+
+    // project filter
+    document.querySelectorAll('[data-filter]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const f = btn.getAttribute('data-filter');
+        document.querySelectorAll('#projectsGrid .proj').forEach(p=>{
+          p.style.display = (f==='all' || p.dataset.category===f)?'block':'none';
+        })
+      })
+    });
+
+    // project modal
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    document.querySelectorAll('[data-open]').forEach(b=>{
+      b.addEventListener('click',()=>{
+        const id = b.getAttribute('data-open');
+        openProject(id);
+      })
+    });
+    function openProject(id){
+      // simple static content, replace with dynamic content or fetch
+      const data = {
+        p1:{title:'Expense Tracker',desc:'Full-featured expense tracker with charts and user auth.'},
+        p2:{title:'Tech Job Portal',desc:'Scraper + Flask app that collects job postings and sends alerts.'},
+        p3:{title:'ML Model',desc:'Simple classification pipeline with sklearn.'}
+      };
+      const d = data[id] || {title:'Project',desc:'Description here.'};
+      modalContent.innerHTML = `<h3>${d.title}</h3><p class="muted">${d.desc}</p><p><a href='#'>View code</a> · <a href='#'>Live demo</a></p>`;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+    }
+    document.getElementById('closeModal').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')});
+    modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}})
+
+    // contact form (client-side only)
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    document.getElementById('sendBtn').addEventListener('click',async ()=>{
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name||!email||!subject||!message){status.textContent='Please fill all fields';return}
+      status.textContent='Sending...';
+      // placeholder: replace with real endpoint (email sending service or backend)
+      await new Promise(r=>setTimeout(r,800));
+      status.textContent='Message sent! (demo)';
+      form.reset();
+    });
+
+    // back to top
+    const topBtn = document.getElementById('topBtn');
+    window.addEventListener('scroll',()=>{
+      if(window.scrollY>300) topBtn.classList.add('show'); else topBtn.classList.remove('show');
+    })
+    topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+    // keyboard accessibility: open first project detail with Enter
+    document.querySelectorAll('#projectsGrid .proj').forEach(p=>{
+      p.addEventListener('keydown',e=>{if(e.key==='Enter'){const btn = p.querySelector('[data-open]'); if(btn) btn.click();}})
+    });
+
+    // small analytics placeholder
+    (function(){console.log('Portfolio loaded')})();
+  </script>
+</body>
+</html>
