@@ -184,7 +184,80 @@ nav {
     .tl-item{position:relative;padding:12px 0 12px 22px}
     .tl-item time{display:block;color:rgba(0,0,0,.45);font-size:.87rem}
 
-    /* ===== Experience & Education Grid ===== */
+   /* ===== Certificates Section ===== */
+#certificates {
+  padding: 70px 25px;
+  background: linear-gradient(135deg, rgba(255, 75, 207, 0.08), rgba(75, 75, 255, 0.08));
+  border-radius: 18px;
+  margin-top: 60px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(255, 75, 207, 0.15);
+}
+
+#certificates .section-title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff4bcf, #4b4bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 35px;
+}
+
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  z-index: 1;
+  position: relative;
+}
+
+.cert-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(255, 75, 207, 0.15);
+  border: 1px solid rgba(255, 75, 207, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(255, 75, 207, 0.25);
+}
+
+.cert-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 2px solid rgba(255, 75, 207, 0.25);
+}
+
+.cert-card h3 {
+  font-size: 1.1rem;
+  color: #4b4bff;
+  margin-bottom: 6px;
+}
+
+[data-theme='dark'] #certificates {
+  background: linear-gradient(135deg, rgba(255, 75, 207, 0.06), rgba(75, 75, 255, 0.06));
+  box-shadow: 0 8px 20px rgba(255, 75, 207, 0.1);
+}
+
+[data-theme='dark'] .cert-card {
+  background: #1b1b1b;
+  color: #eaeaea;
+  border-color: rgba(255, 75, 207, 0.25);
+}
+
+[data-theme='dark'] .cert-card h3 {
+  color: #a9a9ff;
+}
+
 /* ====== Upgraded Education Section ====== */
 #experience {
   background: linear-gradient(135deg, rgba(255, 75, 207, 0.08), rgba(75, 75, 255, 0.08));
@@ -350,6 +423,7 @@ nav {
         <div class="navlinks" id="navlinks">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
+          <a href="#certificates">Certificates</a>
           <a href="#experience">Education</a>
           <a href="#contact">Contact</a>
           <a class="btn" href="Prabha's resume.pdf" download>Download CV</a>
@@ -472,17 +546,81 @@ nav {
         </article>
       </div>
     </section>
+       
+    <!-- ===== Certificates Section ===== -->
+<!-- ===== Certificates Section ===== -->
+<section id="certificates">
+  <h2 class="section-title">Certificates</h2>
 
-    <section id="experience">
-  <h2 class="section-title">Education</h2>
-  <div class="experience-grid">
-    <div class="exp-card">
-      <h3>B.E. Computer Science</h3>
-       <p><strong>2023-2027 Batch</strong></p>
-      <p><strong>2025 - Present</strong></p>
-      <p class="muted">Sri Shakthi Institute of Engineering and Technology</p>
+  <div class="certificates-grid">
+
+    <div class="cert-card">
+      <h3>Full Stack Web Development</h3>
+      <p class="muted">Issued by: Coursera · Meta</p>
+      <p><strong>2024</strong></p>
+      <a href="https://coursera.org" target="_blank" class="btn">View Certificate</a>
     </div>
+
+    <div class="cert-card">
+      <h3>Java Programming Essentials</h3>
+      <p class="muted">Issued by: Great Learning</p>
+      <p><strong>2023</strong></p>
+      <a href="https://www.mygreatlearning.com/" target="_blank" class="btn">View Certificate</a>
+    </div>
+
+    <div class="cert-card">
+      <h3>React Basics</h3>
+      <p class="muted">Issued by: Meta · Coursera</p>
+      <p><strong>2024</strong></p>
+      <a href="https://coursera.org" target="_blank" class="btn">View Certificate</a>
+    </div>
+
+    <div class="cert-card">
+      <h3>Python for Everybody</h3>
+      <p class="muted">Issued by: University of Michigan</p>
+      <p><strong>2023</strong></p>
+      <a href="https://coursera.org" target="_blank" class="btn">View Certificate</a>
+    </div>
+
+    <div class="cert-card">
+      <h3>Introduction to Cybersecurity</h3>
+      <p class="muted">Issued by: Cisco Networking Academy</p>
+      <p><strong>2024</strong></p>
+      <a href="https://www.netacad.com/" target="_blank" class="btn">View Certificate</a>
+    </div>
+
   </div>
+</section>
+
+
+   <!-- ===== Education Section ===== -->
+<section id="experience">
+  <h2 class="section-title">Education</h2>
+
+  <div class="experience-grid">
+    
+    <div class="exp-card">
+      <h3>B.E. Computer Science and Engineering</h3>
+      <p><strong>2023 – 2027 Batch</strong></p>
+      <p class="muted">Sri Shakthi Institute of Engineering and Technology, Coimbatore</p>
+      <p>Currently pursuing 3rd year with focus on full-stack development, data structures, and software engineering.</p>
+    </div>
+
+    <div class="exp-card">
+      <h3>Higher Secondary Education (HSC)</h3>
+      <p><strong>2021 – 2023</strong></p>
+      <p class="muted">Government Higher Secondary School, Coimbatore</p>
+      <p>Specialized in Computer Science stream with strong foundation in programming basics and logic building.</p>
+    </div>
+
+    <div class="exp-card">
+      <h3>SSLC (Secondary School Leaving Certificate)</h3>
+      <p><strong>2019 – 2021</strong></p>
+      <p class="muted">Government High School, Coimbatore</p>
+      <p>Completed schooling with distinction and active participation in tech-related activities.</p>
+    </div>
+
+  
 </section>
 
 
